@@ -10,7 +10,7 @@ request.onupgradeneeded = e => {
   const db = e.target.result;
 
   // creates an object to store table
-  db.createObjectStore('transaction', { autoIncrement: true });
+  db.createObjectStore('new_transaction', { autoIncrement: true });
 };
 
 // if successful
@@ -20,10 +20,24 @@ request.onsuccess = e => {
 
   // check if app's online
   if (navigator.onLine) {
+    // insert code here
+    // uploadTransaction()
   }
 };
 
 // if there's an error
 request.onerror = e => {
   console.log(e.target.errorCode);
+};
+
+// if attempt to submit without connection
+const saveRecord = record => {
+  // open transaction
+  const transaction = db.transaction(['new_transaction', 'readwrite']);
+
+  // access transaction's objectStore
+  const transactionObjectStore = transaction.objectStore('new_transaction');
+
+  // add record
+  transactionObjectStore.add(record);
 };
