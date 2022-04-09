@@ -23,13 +23,14 @@ const FILES_TO_CACHE = [
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('installing cache : ' + CACHE_NAME);
+      console.log(`installing cache : ${CACHE_NAME}`);
 
       return cache.addAll(FILES_TO_CACHE);
     })
   );
 });
 
+// listen for activate
 self.addEventListener('activate', e => {
   e.waitUntil(
     // find only this cache
@@ -45,12 +46,30 @@ self.addEventListener('activate', e => {
       return Promise.all(
         keyList.map((key, i) => {
           if (cacheKeepList.indexOf(key) === -1) {
-            console.log('deleting cache : ' + keyList[i]);
+            console.log(`deleting cache : ${keyList[i]}`);
 
             return caches.delete(keyList[i]);
           }
         })
       );
+    })
+  );
+});
+
+// listen for fetch request
+self.addEventListener('fetch', e => {
+  console.log(`fetch request : ${e.request.url}`);
+  e.respondWith(
+    caches.match(e.request).then(request => {
+      if (request) {
+        // if cache is available, respond with cache
+        console.log('responding with cache : ' + e.request.url);
+        return request;
+      } else {
+        // if there are no cache, try fetching request
+        console.log('file is not cached, fetching : ' + e.request.url);
+        return fetch(e.request);
+      }
     })
   );
 });

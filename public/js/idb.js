@@ -86,5 +86,4 @@ const uploadTransaction = () => {
 };
 
 // when app comes back online
-
 window.addEventListener('online', uploadTransaction);
