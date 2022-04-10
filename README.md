@@ -8,7 +8,7 @@ https://afternoon-badlands-41292.herokuapp.com/
 
 Budget Buddy is an app where a user can keep track of their expenses regardless of their internet connection! Just enter any transaction, and the provided information will be stored locally or in a MongoDB database based on the user's internet connection. The graph will adjust based on this input.
 
-![homescreen image](./assets/img/budget-buddy-snap.png)
+![homescreen image](./assets/img/budget-buddy-snapshot.png)
 
 ## Instructions for Local Use
 
