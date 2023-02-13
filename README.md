@@ -31,3 +31,5 @@ npm install
 ```
 npm start
 ```
+
+5. Enter transaction data into the input fields to begin storing data
