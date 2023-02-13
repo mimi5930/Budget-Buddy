@@ -2,7 +2,7 @@
 
 ## Website
 
-https://afternoon-badlands-41292.herokuapp.com/
+https://budget-buddy-01.herokuapp.com/
 
 ## Description
 
